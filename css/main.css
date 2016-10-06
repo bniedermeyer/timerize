@@ -1,0 +1,63 @@
+.task, .task-delete, .task-edit {
+  background-color: #FFF819; }
+
+.button-container {
+  margin-top: 10px; }
+
+#description, #duration, .task-delete, .task-edit {
+  line-height: 40px; }
+
+.task {
+  height: 40px;
+  font-size: 25px; }
+
+#description {
+  float: left; }
+
+#duration {
+  float: right; }
+
+.task-delete, .task-edit {
+  height: 40px; }
+  .task-delete button, .task-edit button {
+    height: 30px; }
+
+.task,
+.task-delete,
+.task-edit {
+  margin-top: 10px;
+  margin-bottom: 10px; }
+
+.task {
+  height: 40px;
+  font-size: 25px; }
+
+#description {
+  float: left; }
+
+#duration {
+  float: right; }
+
+.task-delete, .task-edit {
+  height: 40px; }
+  .task-delete button, .task-edit button {
+    height: 30px; }
+
+.task,
+.task-delete,
+.task-edit {
+  margin-top: 10px;
+  margin-bottom: 10px; }
+
+body {
+  padding-top: 50px;
+  padding-bottom: 20px; }
+
+.col-centered {
+  margin: 0 auto;
+  float: none; }
+
+.timer-hide {
+  margin-top: 10px; }
+
+/*# sourceMappingURL=main.css.map */
