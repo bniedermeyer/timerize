@@ -8,6 +8,17 @@ varTaskList = React.createClass({
       tasks: []
     }
   },
+  add(description, duration) {
+    var tasks = [
+      ...{this.tasks},
+      {
+        id: this.nextId,
+        description: description,
+        duration: duration
+      }
+    ]
+    this.setState(tasks);
+  },
   eachTask(task) {
     return (
       <Task key={note.id}
@@ -25,3 +36,5 @@ varTaskList = React.createClass({
   }
 
 });
+
+export default TaskList;

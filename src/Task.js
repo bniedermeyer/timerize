@@ -32,7 +32,8 @@ var Task = React.createClass({
       <div class="row">
           <div class="task col-xs-10"></div>
           <div class="col-xs-1 task-delete">
-              <button class="btn btn-default-outline" onClick={this.delete}><span class="glyphicon glyphicon-trash"></span></button>
+              <button class="btn btn-default-outline" onClick={this.delete}><span class="glyphicon glyphicon-trash"></span>
+              </button>
           </div>
           <div class="col-xs-1 task-edit">
               <button class="btn btn-default-outline" onClick={this.edit}><span class="glyphicon glyphicon-pencil"></span></button>
@@ -52,7 +53,7 @@ var Task = React.createClass({
   },
   render() {
     return ({(this.state.editing) ? this.renderForm()
-                                : this.renderDisplay()})
+                                  : this.renderDisplay()})
   }
 });
 
