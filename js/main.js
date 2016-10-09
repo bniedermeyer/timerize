@@ -2,10 +2,10 @@
 var timeCircles;
 var devMode = false;
 
-function Task(description, duration) {
-    this.description = description;
-    this.duration = duration;
-}
+// function Task(description, duration) {
+//     this.description = description;
+//     this.duration = duration;
+// }
 
 // initializes the time circles objec, sets it's visible state and returns it
 function init() {
@@ -24,11 +24,11 @@ function init() {
 
 //handles the various button clicks
 function handleButton(button) {
-    if ($(button).hasClass('start')) { //handles the start button click
+    if /* ($(button).hasClass('start')) { //handles the start button click
         timeCircles.start();
         timeCircles.state = 'started';
         $(button).removeClass('btn-success start').addClass('btn-primary pause').text('Pause');
-    } /*else if ($(button).hasClass("btn-primary")) { //handles the pause button click
+    } else if ($(button).hasClass("btn-primary")) { //handles the pause button click
         timeCircles.stop();
         timeCircles.state = 'stopped';
         $(button).removeClass('btn-primary pause').addClass('btn-success start').text('Start');
@@ -37,7 +37,7 @@ function handleButton(button) {
             resetTimer();
             $('#task-input').val('');
         }
-    } */ else if ($(button).hasClass("btn-warning")) { //adds the current task to the task list
+    } else if ($(button).hasClass("btn-warning")) { //adds the current task to the task list
         if (confirm("Are you sure you want to stop tracking this task and log it to today's task list?")) {
             let duration = calculateTime(timeCircles.getTime());
             let task = new Task($('#task-input').val(), duration);
@@ -45,11 +45,11 @@ function handleButton(button) {
             addTaskToList(task);
             resetTimer();
         }
-    } /*else if ($(button).hasClass("delete-task")) { //handles the delete button on all each task
+    } else if ($(button).hasClass("delete-task")) { //handles the delete button on all each task
         if (confirm('Are you sure you want to delete this task?')) {
             $(button).parentsUntil('#task-container').remove();
         }
-    }*/ else if ($(button).hasClass("timer-hide")) { //hides or shows the timer
+    } else if */ ($(button).hasClass("timer-hide")) { //hides or shows the timer
         if (timeCircles.visible === true) {
             $('.time-container').hide('slow', function() {
                 $('.timer-hide').text('Show Timer');
@@ -79,36 +79,36 @@ function handleButton(button) {
     $('.btn-primary').removeClass('btn-primary pause').addClass('btn-success start').text('Start');
 }*/
 
-//returns a formatted time from the supplied seconds from the timeCircles
-function calculateTime(seconds) {
-    seconds = seconds * -1; //timeCircles return the duration in negative seconds since it was started. Make the nubmer positive
-    return seconds.toString().toHHMMSS();
-}
-
-//add new function to String prototype to format an amount of seconds to the time output
-String.prototype.toHHMMSS = function() {
-    var sec_num = parseInt(this, 10);
-    var hours = Math.floor(sec_num / 3600);
-    var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
-    var seconds = sec_num - (hours * 3600) - (minutes * 60);
-
-    if (hours < 10) {
-        hours = "0" + hours;
-    }
-    if (minutes < 10) {
-        minutes = "0" + minutes;
-    }
-    if (seconds < 10) {
-        seconds = "0" + seconds;
-    }
-    return hours + ':' + minutes + ':' + seconds;
-}
+// //returns a formatted time from the supplied seconds from the timeCircles
+// function calculateTime(seconds) {
+//     seconds = seconds * -1; //timeCircles return the duration in negative seconds since it was started. Make the nubmer positive
+//     return seconds.toString().toHHMMSS();
+// }
+//
+// //add new function to String prototype to format an amount of seconds to the time output
+// String.prototype.toHHMMSS = function() {
+//     var sec_num = parseInt(this, 10);
+//     var hours = Math.floor(sec_num / 3600);
+//     var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+//     var seconds = sec_num - (hours * 3600) - (minutes * 60);
+//
+//     if (hours < 10) {
+//         hours = "0" + hours;
+//     }
+//     if (minutes < 10) {
+//         minutes = "0" + minutes;
+//     }
+//     if (seconds < 10) {
+//         seconds = "0" + seconds;
+//     }
+//     return hours + ':' + minutes + ':' + seconds;
+// }
 
 //handles the button clicks
-$(document).on('click', '.btn', function(event) {
-    event.preventDefault();
-    handleButton(this);
-});
+// $(document).on('click', '.btn', function(event) {
+//     event.preventDefault();
+//     handleButton(this);
+// });
 
 //makes the timer responsive to window size
 $(window).resize(_.throttle(function() {
@@ -169,14 +169,14 @@ function loadTasks() {
 }*/
 
 //gets the current tasks in the list and builds them in an array of Task objects
-function buildTaskList() {
-    let taskArray = [];
-    $('.task').each(function() {
-        taskArray.push(new Task($(this).attr('taskDescription'), $(this).attr('taskDuration')));
-    });
-    conole.log(taskArray);
-    return taskArray;
-}
+// function buildTaskList() {
+//     let taskArray = [];
+//     $('.task').each(function() {
+//         taskArray.push(new Task($(this).attr('taskDescription'), $(this).attr('taskDuration')));
+//     });
+//     conole.log(taskArray);
+//     return taskArray;
+// }
 
 $(document).ready(function() {
     timeCircles = init(); //initialize the timeCircles

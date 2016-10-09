@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import timeCircleUtils from './timeCircleUtils';
 import Task from './Task';
 
 var TaskList = React.createClass({
@@ -14,7 +15,11 @@ var TaskList = React.createClass({
     return this.uniqueId++;
   },
   newTask() {
-    
+    if (confirm("Are you sure you want to stop tracking this task and log it to today's task list?")) {
+            var duration = timeCircleUtils.calculateTime($('.time-container').TimeCircles().getTime());
+            var description = $('#task-input').val();
+            this.add(description, duration);
+        }
   },
   add(description, duration) {
     var tasks = [
@@ -27,18 +32,18 @@ var TaskList = React.createClass({
     ];
     this.setState({tasks});
   },
-  update(description, duration, id) {
-    var tasks = this.state.tasks.map(
-      task => (this.task.id !== id) ?
-          task :
-          {
-            ...task,
-            description: description,
-            duration: duration
-          }
-    );
-    this.setState({tasks});
-  },
+  // update(description, duration, id) { //TODO: implement logic for editing
+  //   var tasks = this.state.tasks.map(
+  //     task => (this.task.id !== id) ?
+  //         task :
+  //         {
+  //           ...task,
+  //           description: description,
+  //           duration: duration
+  //         }
+  //   );
+  //   this.setState({tasks});
+  // },
   eachTask(task) {
     return (
       <Task key={task.id}
@@ -87,9 +92,10 @@ var TaskList = React.createClass({
   },
   render() {
     return (
-      <div className="taskList">
-        if (counting) ? renderCounting() : renderNotCounting()
-        {this.state.tasks.map(this.eachTask)}</div>
+        <div className="taskList">
+          if (counting) ? renderCounting() : renderNotCounting();
+            {this.state.tasks.map(this.eachTask)}
+        </div>
     )
   }
 });
