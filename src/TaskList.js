@@ -8,21 +8,37 @@ varTaskList = React.createClass({
       tasks: []
     }
   },
+  nextId() {
+    this.uniqueId = this.uniqueId || 0;
+    return this.uniqueId++;
+  },
   add(description, duration) {
     var tasks = [
-      ...{this.tasks},
+      ...this.state.tasks,
       {
-        id: this.nextId,
+        id: this.nextId(),
         description: description,
         duration: duration
       }
-    ]
-    this.setState(tasks);
+    ];
+    this.setState({tasks});
+  },
+  update(description, duration, id) {
+    var tasks = this.state.tasks.map(
+      task => (this.task.id !== id) ?
+          task :
+          {
+            ...task,
+            description: description,
+            duration: duration
+          }
+    );
+    this.setState({tasks});
   },
   eachTask(task) {
     return (
-      <Task key={note.id}
-            id={note.id}
+      <Task key={task.id}
+            id={task.id}
             onChange={this.update}
             onRemove={this.remove}>
             {task.task}

@@ -48,8 +48,8 @@ function handleButton(button) {
     } /*else if ($(button).hasClass("delete-task")) { //handles the delete button on all each task
         if (confirm('Are you sure you want to delete this task?')) {
             $(button).parentsUntil('#task-container').remove();
-        }*/
-    } else if ($(button).hasClass("timer-hide")) { //hides or shows the timer
+        }
+    }*/ else if ($(button).hasClass("timer-hide")) { //hides or shows the timer
         if (timeCircles.visible === true) {
             $('.time-container').hide('slow', function() {
                 $('.timer-hide').text('Show Timer');
@@ -152,7 +152,7 @@ function loadTasks() {
 }
 
 //adds the given task to the list of displayed tasks
-function addTaskToList(task) {
+/*function addTaskToList(task) {
     //lodash template for task html
     const taskTemplate = _.template('<div class="row"><div class="task col-xs-10" taskDescription="<%= desc %>" taskDuration="<%= duration %>"><span id="description">' +
         '<%= desc %></span><span id="duration"><%= duration %></span>' +
@@ -166,7 +166,7 @@ function addTaskToList(task) {
     //append the task to the list of tasks
     $('#task-container').append(taskRow);
 
-}
+}*/
 
 //gets the current tasks in the list and builds them in an array of Task objects
 function buildTaskList() {
