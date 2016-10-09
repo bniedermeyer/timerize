@@ -28,7 +28,7 @@ function handleButton(button) {
         timeCircles.start();
         timeCircles.state = 'started';
         $(button).removeClass('btn-success start').addClass('btn-primary pause').text('Pause');
-    } else if ($(button).hasClass("btn-primary")) { //handles the pause button click
+    } /*else if ($(button).hasClass("btn-primary")) { //handles the pause button click
         timeCircles.stop();
         timeCircles.state = 'stopped';
         $(button).removeClass('btn-primary pause').addClass('btn-success start').text('Start');
@@ -37,7 +37,7 @@ function handleButton(button) {
             resetTimer();
             $('#task-input').val('');
         }
-    } else if ($(button).hasClass("btn-warning")) { //adds the current task to the task list
+    } */ else if ($(button).hasClass("btn-warning")) { //adds the current task to the task list
         if (confirm("Are you sure you want to stop tracking this task and log it to today's task list?")) {
             let duration = calculateTime(timeCircles.getTime());
             let task = new Task($('#task-input').val(), duration);
@@ -72,12 +72,12 @@ function handleButton(button) {
 }
 
 //resets the timer, changes its state to stopped, clears the text box, and enables the start button.
-function resetTimer() {
+/*function resetTimer() {
     timeCircles.restart().stop();
     $('#task-input').val('');
     timeCircles.state = 'stopped';
     $('.btn-primary').removeClass('btn-primary pause').addClass('btn-success start').text('Start');
-}
+}*/
 
 //returns a formatted time from the supplied seconds from the timeCircles
 function calculateTime(seconds) {

@@ -2,15 +2,19 @@ import React from 'react';
 import './App.css';
 import Task from './Task';
 
-varTaskList = React.createClass({
+var TaskList = React.createClass({
   getInitialState() {
     return {
-      tasks: []
+      tasks: [],
+      counting: false
     }
   },
   nextId() {
     this.uniqueId = this.uniqueId || 0;
     return this.uniqueId++;
+  },
+  newTask() {
+    
   },
   add(description, duration) {
     var tasks = [
@@ -45,12 +49,49 @@ varTaskList = React.createClass({
       </Task>
     )
   },
+  startCount() {
+    $('.time-container').TimeCircles().start();
+    this.setState({counting: true});
+  },
+  stopCount() {
+    $('.time-container').TimeCircles().stop();
+    this.setState({counting: false});
+  },
+  resetCount() {
+    $('.time-container').TimeCircles().restart().stop();
+    $('#task-input').val('');
+    this.setState({counting: false});
+  },
+  renderNotCounting() {
+    return (
+      <div class="row">
+        <button class="btn btn-success col-xs-4"
+        onClick={this.startCount}>Start</button>
+        <button class="btn btn-danger col-xs-4"
+        onClick={this.resetCount}>Reset</button>
+        <button class="btn btn-warn col-xs-4"
+        onClick={this.newTask}>New Task</button>
+      </div>
+    )
+  },
+  renderCounting() {
+    return (
+      <div class="row">
+        <button class="btn btn-success col-xs-4" oncClick={this.stopCount}>Pause</button>
+        <button class="btn btn-danger col-xs-4"
+        onClick={this.resetCount}>Reset</button>
+        <button class="btn btn-warn col-xs-4"
+        onClick={this.newTask}>New Task</button>
+      </div>
+    )
+  },
   render() {
     return (
-      <div className="taskList">{this.state.tasks.map(this.eachTask)}</div>
+      <div className="taskList">
+        if (counting) ? renderCounting() : renderNotCounting()
+        {this.state.tasks.map(this.eachTask)}</div>
     )
   }
-
 });
 
 export default TaskList;
