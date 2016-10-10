@@ -52,8 +52,8 @@ var Task = React.createClass({
     )
   },
   render() {
-    return ({(this.state.editing) ? this.renderForm()
-                                  : this.renderDisplay()})
+    return ((this.state.editing) ? this.renderForm()
+                                  : this.renderDisplay())
   }
 });
 
