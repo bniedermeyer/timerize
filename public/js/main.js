@@ -1,4 +1,3 @@
-"use strict"
 var timeCircles;
 var devMode = false;
 
@@ -9,7 +8,7 @@ var devMode = false;
 
 // initializes the time circles objec, sets it's visible state and returns it
 function init() {
-    let tc = $('.time-container').TimeCircles({
+    var tc = $('.time-container').TimeCircles({
         start: false,
         time: {
             Days: {
@@ -18,7 +17,7 @@ function init() {
         }
     });
     tc.visible = true;
-    loadTasks();
+    // loadTasks();
     return tc;
 }
 
@@ -121,35 +120,35 @@ $(window).resize(_.throttle(function() {
 }, 500));
 
 //Takes the current task elements and stores their data as a cookie
-function saveTasks() {
-    //get the current day to store in the tasks data in cache
-    let currentDay = new Date().getDate();
-    let tasks = buildTaskList();
-    console.log(tasks);
-    lscache.set('tasks', {'date': currentDay, 'tasks': tasks});
-}
-
-//retrieves any taks stored as cookies and repopulates the task list.
-function loadTasks() {
-
-    let storedTasks = lscache.get('tasks');
-    console.log('LOADING TASKS!!>>>>>>>>>>> ' + storedTasks);
-    if (storedTasks !== null) {
-        console.log(storedTasks);
-        let currentDay = new Date().getDate();
-        //check to make sure the dates were stored today
-        if (currentDay === storedTasks.date) {
-            let taskList = storedTasks.tasks;
-            for (var task in taskList) {
-                console.log('current task >>>>>>' + JSON.stringify(task));
-                addTaskToList(task);
-            }
-        } else {
-            //if not stored today remove the stored tasks from local storage
-            // lscache.remove('tasks');
-        }
-    }
-}
+// function saveTasks() {
+//     //get the current day to store in the tasks data in cache
+//     let currentDay = new Date().getDate();
+//     let tasks = buildTaskList();
+//     console.log(tasks);
+//     lscache.set('tasks', {'date': currentDay, 'tasks': tasks});
+// }
+//
+// //retrieves any taks stored as cookies and repopulates the task list.
+// function loadTasks() {
+//
+//     let storedTasks = lscache.get('tasks');
+//     console.log('LOADING TASKS!!>>>>>>>>>>> ' + storedTasks);
+//     if (storedTasks !== null) {
+//         console.log(storedTasks);
+//         let currentDay = new Date().getDate();
+//         //check to make sure the dates were stored today
+//         if (currentDay === storedTasks.date) {
+//             let taskList = storedTasks.tasks;
+//             for (var task in taskList) {
+//                 console.log('current task >>>>>>' + JSON.stringify(task));
+//                 addTaskToList(task);
+//             }
+//         } else {
+//             //if not stored today remove the stored tasks from local storage
+//             // lscache.remove('tasks');
+//         }
+//     }
+// }
 
 //adds the given task to the list of displayed tasks
 /*function addTaskToList(task) {
@@ -189,10 +188,10 @@ $(document).ready(function() {
     });
 
     //prompt the user to make sure they've logged their hours before closing the window
-    window.onbeforeunload = function(e) {
-        saveTasks();
-        if (!devMode) { //only show the prompt if this is not the version in development
-            return 'Have you logged your time to EDIHours?';
-        }
-    };
+    // window.onbeforeunload = function(e) {
+    //     saveTasks();
+    //     if (!devMode) { //only show the prompt if this is not the version in development
+    //         return 'Have you logged your time to EDIHours?';
+    //     }
+    // };
 });

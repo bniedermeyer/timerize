@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import timeCircleUtils from './timeCircleUtils';
 import Task from './Task';
+import $ from 'jquery';
 
 var TaskList = React.createClass({
   getInitialState() {
@@ -59,7 +60,7 @@ var TaskList = React.createClass({
     this.setState({counting: true});
   },
   stopCount() {
-    $('.time-container').TimeCircles().stop();
+    ('.time-container').TimeCircles().stop();
     this.setState({counting: false});
   },
   resetCount() {
@@ -69,23 +70,23 @@ var TaskList = React.createClass({
   },
   renderNotCounting() {
     return (
-      <div class="row">
-        <button class="btn btn-success col-xs-4"
+      <div className="row">
+        <button className="btn btn-success col-xs-4"
         onClick={this.startCount}>Start</button>
-        <button class="btn btn-danger col-xs-4"
+        <button className="btn btn-danger col-xs-4"
         onClick={this.resetCount}>Reset</button>
-        <button class="btn btn-warn col-xs-4"
+        <button className="btn btn-warning col-xs-4"
         onClick={this.newTask}>New Task</button>
       </div>
     )
   },
   renderCounting() {
     return (
-      <div class="row">
-        <button class="btn btn-success col-xs-4" oncClick={this.stopCount}>Pause</button>
-        <button class="btn btn-danger col-xs-4"
+      <div className="row">
+        <button className="btn btn-success col-xs-4" oncClick={this.stopCount}>Pause</button>
+        <button className="btn btn-danger col-xs-4"
         onClick={this.resetCount}>Reset</button>
-        <button class="btn btn-warn col-xs-4"
+        <button className="btn btn-warning col-xs-4"
         onClick={this.newTask}>New Task</button>
       </div>
     )
@@ -93,7 +94,7 @@ var TaskList = React.createClass({
   render() {
     return (
         <div className="taskList">
-          if (counting) ? renderCounting() : renderNotCounting();
+          {(this.state.counting) ? this.renderCounting() : this.renderNotCounting()}
             {this.state.tasks.map(this.eachTask)}
         </div>
     )
