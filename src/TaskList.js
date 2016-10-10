@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import timeCircleUtils from './timeCircleUtils';
+import timeCircleUtils from './TimeCircleUtils';
 import Task from './Task';
 import $ from 'jquery';
 
