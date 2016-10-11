@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
-import timeCircleUtils from './TimeCircleUtils';
 import Task from './Task';
-import $ from 'jquery';
+import Timer from 'timer-machine';
 
+var timer;
 var TaskList = React.createClass({
   getInitialState() {
     return {
@@ -15,11 +15,13 @@ var TaskList = React.createClass({
     this.uniqueId = this.uniqueId || 0;
     return this.uniqueId++;
   },
+  componentDidMount() {
+    timer = new Timer();
+  },
   newTask() {
     if (confirm("Are you sure you want to stop tracking this task and log it to today's task list?")) {
-            var duration = timeCircleUtils.calculateTime($('.time-container').TimeCircles().getTime());
-            var description = $('#task-input').val();
-            this.add(description, duration);
+            // TODO: implement adding of new task.
+            // this.add(description, duration);
         }
   },
   add(description, duration) {
@@ -56,16 +58,20 @@ var TaskList = React.createClass({
     )
   },
   startCount() {
-    $('.time-container').TimeCircles().start();
+    timer.on('time', function (time) {
+        console.log('Current time: ' + time + 'ms');
+        document.getElementsByClassName('time-container').innerHTML = time;
+    })
+    timer.toggle()
+    setInterval(timer.emitTime.bind(timer), 1000)
     this.setState({counting: true});
   },
   stopCount() {
-    ('.time-container').TimeCircles().stop();
+    timer.stop();
+    alert('pause clicked!');
     this.setState({counting: false});
   },
   resetCount() {
-    $('.time-container').TimeCircles().restart().stop();
-    $('#task-input').val('');
     this.setState({counting: false});
   },
   renderNotCounting() {
@@ -83,7 +89,8 @@ var TaskList = React.createClass({
   renderCounting() {
     return (
       <div className="row">
-        <button className="btn btn-success col-xs-4" oncClick={this.stopCount}>Pause</button>
+        <button className="btn btn-primary col-xs-4"
+        onClick={this.stopCount}>Pause</button>
         <button className="btn btn-danger col-xs-4"
         onClick={this.resetCount}>Reset</button>
         <button className="btn btn-warning col-xs-4"

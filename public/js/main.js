@@ -8,17 +8,17 @@ var devMode = false;
 
 // initializes the time circles objec, sets it's visible state and returns it
 function init() {
-    var tc = $('.time-container').TimeCircles({
-        start: false,
-        time: {
-            Days: {
-                show: false
-            }
-        }
-    });
-    tc.visible = true;
+    // var tc = $('.time-container').TimeCircles({
+    //     start: false,
+    //     time: {
+    //         Days: {
+    //             show: false
+    //         }
+    //     }
+    // });
+    // tc.visible = true;
     // loadTasks();
-    return tc;
+    // return tc;
 }
 
 //handles the various button clicks
@@ -176,16 +176,16 @@ $(window).resize(_.throttle(function() {
 //     conole.log(taskArray);
 //     return taskArray;
 // }
-
-$(document).ready(function() {
-    timeCircles = init(); //initialize the timeCircles
-
-    //bind the enter key to the start/pause button
-    $(document).bind('keypress', function(e) {
-        if (event.keyCode == 13) {
-            $(".start,.pause").click();
-        }
-    });
+//
+// $(document).ready(function() {
+//     // timeCircles = init(); //initialize the timeCircles
+//
+//     //bind the enter key to the start/pause button
+//     $(document).bind('keypress', function(e) {
+//         if (event.keyCode == 13) {
+//             $(".start,.pause").click();
+//         }
+//     });
 
     //prompt the user to make sure they've logged their hours before closing the window
     // window.onbeforeunload = function(e) {
@@ -194,4 +194,4 @@ $(document).ready(function() {
     //         return 'Have you logged your time to EDIHours?';
     //     }
     // };
-});
+// });

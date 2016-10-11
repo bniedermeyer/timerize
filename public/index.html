@@ -9,10 +9,9 @@
     <link rel="stylesheet" href="%PUBLIC_URL%/css/vendor/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="%PUBLIC_URL%/css/vendor/bootstrap/bootstrap-theme.min.css">
     <link rel="stylesheet" href="%PUBLIC_URL%/css/main.css">
-
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
     <!-- TimeCircles -->
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/timecircles/1.5.3/TimeCircles.min.css">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/timecircles/1.5.3/TimeCircles.min.js"></script>
 </head>
@@ -22,7 +21,7 @@
         <div class="row">
             <button type="button" class="btn btn-default-outline col-xs-4 col-xs-offset-4 timer-hide">Hide Timer</button>
         </div>
-        <div class="time-container" data-timer="0"></div>
+        <div id="time-container">00:00:00</div>
         <div class="row">
             <div class="col-lg-6 col-sm-6 col-centered">
                 <input type="text" class="form-control input-lg" id="task-input" placeholder="Enter task description here">
@@ -33,7 +32,7 @@
     <!-- <div class="container" id="task-container"></div> -->
     <!-- <script type="text/javascript" src="/src/index.js"></script> -->
     <script type="text/javascript" src="%PUBLIC_URL%/js/vendor/bootstrap.min.js"></script>
-    <script type="text/javascript" src="%PUBLIC_URL%/js/main.js"></script>
+    <!-- <script type="text/javascript" src="%PUBLIC_URL%/js/main.js"></script> -->
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/lodash/4.11.2/lodash.min.js"></script>
     <script type="text/javascript" src="js/vendor/lodash.min.js"></script>
     <script type="text/javascript" src="./js/vendor/lscache.min.js"></script>-->
