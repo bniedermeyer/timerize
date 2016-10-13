@@ -9,10 +9,12 @@ body {
 .timer-hide {
     margin-top: 10px;
 }
-.time-container {
+#time-container {
     text-align: center;
+    color: rgb(0, 110, 255);
+}
+#timer {
     font: {
-        size: 20px;
-        
+        size: 10em;
     }
 }
