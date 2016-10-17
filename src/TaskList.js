@@ -1,29 +1,32 @@
 import React from 'react';
 import './App.css';
 import Task from './Task';
-import Timer from 'timer-machine';
 
-var timer;
-var TaskList = React.createClass({
-  getInitialState() {
-    return {
-      tasks: [],
-      counting: false
-    }
-  },
+class TaskList extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state = {tasks: [], isCounting: false, seconds: 0};
+
+    //functions
+    this.nextId = this.nextId.bind(this);
+    // this.newTask = this.newTask.bind(this);
+    // this.add = this.add.bind(this);
+    this.update = this.update.bind(this);
+    // this.eachTask = this.eachTask.bind(this);
+    this.startCount = this.startCount.bind(this);
+    this.stopCount = this.stopCount.bind(this);
+    this.resetCount = this.resetCount.bind(this);
+  }
   nextId() {
     this.uniqueId = this.uniqueId || 0;
     return this.uniqueId++;
-  },
-  componentDidMount() {
-    timer = new Timer();
-  },
+  }
   newTask() {
     if (confirm("Are you sure you want to stop tracking this task and log it to today's task list?")) {
             // TODO: implement adding of new task.
             // this.add(description, duration);
         }
-  },
+  }
   add(description, duration) {
     var tasks = [
       ...this.state.tasks,
@@ -34,19 +37,9 @@ var TaskList = React.createClass({
       }
     ];
     this.setState({tasks});
-  },
-  // update(description, duration, id) { //TODO: implement logic for editing
-  //   var tasks = this.state.tasks.map(
-  //     task => (this.task.id !== id) ?
-  //         task :
-  //         {
-  //           ...task,
-  //           description: description,
-  //           duration: duration
-  //         }
-  //   );
-  //   this.setState({tasks});
-  // },
+  }
+  update(description, duration, id) {
+  }
   eachTask(task) {
     return (
       <Task key={task.id}
@@ -56,24 +49,23 @@ var TaskList = React.createClass({
             {task.task}
       </Task>
     )
-  },
+  }
   startCount() {
-    timer.on('time', function (time) {
-        console.log('Current time: ' + time + 'ms');
-        document.getElementsByClassName('time-container').innerHTML = time;
-    })
-    timer.toggle()
-    setInterval(timer.emitTime.bind(timer), 1000)
-    this.setState({counting: true});
-  },
+    console.log(this.state.isCounting);
+    console.log(this.state.seconds);
+    var secs = this.state.seconds
+    setInterval(function() {
+      secs++;
+      console.log(secs);
+    },1000);
+    this.setState({isCounting: true, seconds: secs});
+  }
   stopCount() {
-    timer.stop();
-    alert('pause clicked!');
-    this.setState({counting: false});
-  },
+    this.setState({isCounting: false})
+    console.log(this.state.seconds);
+  }
   resetCount() {
-    this.setState({counting: false});
-  },
+  }
   renderNotCounting() {
     return (
       <div className="row">
@@ -85,7 +77,7 @@ var TaskList = React.createClass({
         onClick={this.newTask}>New Task</button>
       </div>
     )
-  },
+  }
   renderCounting() {
     return (
       <div className="row">
@@ -97,15 +89,15 @@ var TaskList = React.createClass({
         onClick={this.newTask}>New Task</button>
       </div>
     )
-  },
+  }
   render() {
     return (
         <div className="taskList">
-          {(this.state.counting) ? this.renderCounting() : this.renderNotCounting()}
+          {(this.state.isCounting) ? this.renderCounting() : this.renderNotCounting()}
             {this.state.tasks.map(this.eachTask)}
         </div>
     )
   }
-});
+}
 
 export default TaskList;
