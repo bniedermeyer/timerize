@@ -1,5 +1,5 @@
-var timeCircles;
-var devMode = false;
+//var timeCircles;
+//var devMode = false;
 
 // function Task(description, duration) {
 //     this.description = description;
@@ -22,7 +22,7 @@ function init() {
 }
 
 //handles the various button clicks
-function handleButton(button) {
+/*function handleButton(button) {
     if /* ($(button).hasClass('start')) { //handles the start button click
         timeCircles.start();
         timeCircles.state = 'started';
@@ -48,7 +48,7 @@ function handleButton(button) {
         if (confirm('Are you sure you want to delete this task?')) {
             $(button).parentsUntil('#task-container').remove();
         }
-    } else if */ ($(button).hasClass("timer-hide")) { //hides or shows the timer
+    } else if  ($(button).hasClass("timer-hide")) { //hides or shows the timer
         if (timeCircles.visible === true) {
             $('.time-container').hide('slow', function() {
                 $('.timer-hide').text('Show Timer');
@@ -60,7 +60,7 @@ function handleButton(button) {
                 timeCircles.visible = true;
             });
         }
-    } /*else if ($(button).hasClass("edit-task")) {
+    } else if ($(button).hasClass("edit-task")) {
         var newName = prompt("Please Enter the new task name:");
         if (newName !== null) {
             console.log(">>>>>>" + $(button).prevAll(".task:first").attr("class"));
@@ -68,7 +68,7 @@ function handleButton(button) {
             // $(button).parentsUntil('#row', '.task').text(newName);
         }
     }*/
-}
+}/*
 
 //resets the timer, changes its state to stopped, clears the text box, and enables the start button.
 /*function resetTimer() {
@@ -110,14 +110,14 @@ function handleButton(button) {
 // });
 
 //makes the timer responsive to window size
-$(window).resize(_.throttle(function() {
-    let seconds = timeCircles.getTime();
-    timeCircles.stop();
-    timeCircles.rebuild();
-    if (timeCircles.state === 'started') {
-        timeCircles.start();
-    }
-}, 500));
+// $(window).resize(_.throttle(function() {
+//     let seconds = timeCircles.getTime();
+//     timeCircles.stop();
+//     timeCircles.rebuild();
+//     if (timeCircles.state === 'started') {
+//         timeCircles.start();
+//     }
+// }, 500));
 
 //Takes the current task elements and stores their data as a cookie
 // function saveTasks() {
@@ -177,21 +177,24 @@ $(window).resize(_.throttle(function() {
 //     return taskArray;
 // }
 //
-// $(document).ready(function() {
-//     // timeCircles = init(); //initialize the timeCircles
-//
-//     //bind the enter key to the start/pause button
-//     $(document).bind('keypress', function(e) {
-//         if (event.keyCode == 13) {
-//             $(".start,.pause").click();
-//         }
-//     });
+$(document).ready(function() {
+    // timeCircles = init(); //initialize the timeCircles
+    document.getElementById('timer').addEventListener("timer", function (e) {
+        $('#timer').text(e.time);
+    });
+
+    //bind the enter key to the start/pause button
+    $(document).bind('keypress', function(e) {
+        if (event.keyCode == 13) {
+            $(".start,.pause").click();
+        }
+    });
 
     //prompt the user to make sure they've logged their hours before closing the window
-    // window.onbeforeunload = function(e) {
-    //     saveTasks();
-    //     if (!devMode) { //only show the prompt if this is not the version in development
-    //         return 'Have you logged your time to EDIHours?';
-    //     }
-    // };
-// });
+    window.onbeforeunload = function(e) {
+        saveTasks();
+        if (!devMode) { //only show the prompt if this is not the version in development
+            return 'Have you logged your time to EDIHours?';
+        }
+    };
+});

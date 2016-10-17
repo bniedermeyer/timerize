@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Task from './Task';
+import Timer from './Timer';
 
 class TaskList extends React.Component{
   constructor(props) {
@@ -16,6 +17,7 @@ class TaskList extends React.Component{
     this.startCount = this.startCount.bind(this);
     this.stopCount = this.stopCount.bind(this);
     this.resetCount = this.resetCount.bind(this);
+    this.timer = new Timer();
   }
   nextId() {
     this.uniqueId = this.uniqueId || 0;
