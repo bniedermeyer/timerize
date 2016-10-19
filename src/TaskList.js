@@ -53,20 +53,16 @@ class TaskList extends React.Component{
     )
   }
   startCount() {
-    console.log(this.state.isCounting);
-    console.log(this.state.seconds);
-    var secs = this.state.seconds
-    setInterval(function() {
-      secs++;
-      console.log(secs);
-    },1000);
-    this.setState({isCounting: true, seconds: secs});
+    this.timer.startTimer();
+    this.setState({isCounting: true});
   }
   stopCount() {
-    this.setState({isCounting: false})
-    console.log(this.state.seconds);
+    this.timer.stopTimer();
+    this.setState({isCounting: false});
   }
   resetCount() {
+    this.timer.resetTimer();
+    this.setState({isCounting: false});
   }
   renderNotCounting() {
     return (

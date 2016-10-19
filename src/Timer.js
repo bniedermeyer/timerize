@@ -1,34 +1,44 @@
 var seconds = 0;
-var counting = false;
 var timerId;
 
 export default class Timer {
-  constructor() {
-  }
-
-  function resetTimer() {
+   resetTimer() {
+    this.stopTimer();
     seconds = 0;
-    counting = false;
+    var event = new CustomEvent("timer", {
+      detail: {
+        time: '00:00:00'
+      }
+    });
+    document.body.dispatchEvent(event);
   }
 
-  function startTimer() {
+   startTimer() {
     timerId = window.setInterval(function () {
       seconds++;
-      var event = new CustomEvent("timer", {time: this.convertToTimeStamp(seconds)});
-      document.dispatchEvent(event);
+      var event = new CustomEvent("timer", {
+        detail: {
+          time: Timer.convertToTimeStamp(seconds)
+        }
+      });
+      document.body.dispatchEvent(event);
     }, 1000);
   }
 
-  function stopTimer() {
+   stopTimer() {
     window.clearInterval(timerId);
   }
 
-  function convertToTimeStamp(secs) {
-    var outHours = secs/3600;
-    var outMinutes = (secs/3600) / 60;
+   static convertToTimeStamp(secs) {
+    var outHours = Math.floor(secs / 3600);
+    var outMinutes = Math.floor((Math.floor(secs % 3600)) / 60);
     var outSeconds = secs % 60;
 
-    return (outHours ? ((outHours > 9) ? outHours: "0" + outHours) : "00") + ":" + (outMinutes ? ((outMinutes > 9) ? outMinutes : "0" + outMinutes) : "00") + ":" + ((outSeconds > 9) ? outSeconds : "0" + outSeconds) : "00");
+    outHours = outHours ? ((outHours > 9) ? outHours: "0" + outHours) : "00";
+    outMinutes = outMinutes ? ((outMinutes > 9) ? outMinutes : "0" + outMinutes) : "00";
+    outSeconds = outSeconds ? ((outSeconds > 9) ? outSeconds : "0" + outSeconds) : "00";
+
+    return outHours + ":" + outMinutes + ":" + outSeconds;
 
   }
 
