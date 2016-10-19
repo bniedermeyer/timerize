@@ -10,8 +10,8 @@ class TaskList extends React.Component{
 
     //functions
     this.nextId = this.nextId.bind(this);
-    // this.newTask = this.newTask.bind(this);
-    // this.add = this.add.bind(this);
+    this.newTask = this.newTask.bind(this);
+    this.add = this.add.bind(this);
     this.update = this.update.bind(this);
     // this.eachTask = this.eachTask.bind(this);
     this.startCount = this.startCount.bind(this);
@@ -25,8 +25,9 @@ class TaskList extends React.Component{
   }
   newTask() {
     if (confirm("Are you sure you want to stop tracking this task and log it to today's task list?")) {
-            // TODO: implement adding of new task.
-            // this.add(description, duration);
+            var description = document.getElementById("task-input").value;
+            // var duration = this.timer.getTimeString();
+            this.add(description, '00:00:30');
         }
   }
   add(description, duration) {
@@ -61,8 +62,11 @@ class TaskList extends React.Component{
     this.setState({isCounting: false});
   }
   resetCount() {
-    this.timer.resetTimer();
-    this.setState({isCounting: false});
+    if (confirm("Are you sure you want to reset the timer? You will lose your current task's time!")) {
+      this.timer.resetTimer();
+      this.setState({isCounting: false});
+    }
+
   }
   renderNotCounting() {
     return (

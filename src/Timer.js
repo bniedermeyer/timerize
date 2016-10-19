@@ -29,6 +29,11 @@ export default class Timer {
     window.clearInterval(timerId);
   }
 
+  getTimeString() {
+    var time =  Timer.convertToTimeStamp(seconds);
+    console.log(time);
+  }
+
    static convertToTimeStamp(secs) {
     var outHours = Math.floor(secs / 3600);
     var outMinutes = Math.floor((Math.floor(secs % 3600)) / 60);
@@ -39,7 +44,6 @@ export default class Timer {
     outSeconds = outSeconds ? ((outSeconds > 9) ? outSeconds : "0" + outSeconds) : "00";
 
     return outHours + ":" + outMinutes + ":" + outSeconds;
-
   }
 
 }
