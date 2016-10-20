@@ -13,7 +13,7 @@ class TaskList extends React.Component{
     this.newTask = this.newTask.bind(this);
     this.add = this.add.bind(this);
     this.update = this.update.bind(this);
-    // this.eachTask = this.eachTask.bind(this);
+    this.eachTask = this.eachTask.bind(this);
     this.startCount = this.startCount.bind(this);
     this.stopCount = this.stopCount.bind(this);
     this.resetCount = this.resetCount.bind(this);
@@ -41,7 +41,17 @@ class TaskList extends React.Component{
     ];
     this.setState({tasks});
   }
-  update(description, duration, id) {
+  update(newDescription, newDuration, id) {
+    var tasks = this.state.tasks.map(
+      task => (task.id !== id) ?
+      task :
+      {
+        ...task,
+        description: newDescription,
+        duration: newDuration
+      }
+    )
+    this.setState({tasks});
   }
   eachTask(task) {
     return (

@@ -29,24 +29,24 @@ var Task = React.createClass({
   },
   renderDisplay() {
     return (
-      <div class="row">
-          <div class="task col-xs-10"></div>
-          <div class="col-xs-1 task-delete">
-              <button class="btn btn-default-outline" onClick={this.delete}><span class="glyphicon glyphicon-trash"></span>
+      <div className="row">
+          <div className="task col-xs-10"></div>
+          <div className="col-xs-1 task-delete">
+              <button className="btn btn-default-outline" onClick={this.delete}><span className="glyphicon glyphicon-trash"></span>
               </button>
           </div>
-          <div class="col-xs-1 task-edit">
-              <button class="btn btn-default-outline" onClick={this.edit}><span class="glyphicon glyphicon-pencil"></span></button>
+          <div className="col-xs-1 task-edit">
+              <button className="btn btn-default-outline" onClick={this.edit}><span className="glyphicon glyphicon-pencil"></span></button>
           </div>
       </div>
     )
   },
   renderForm() {
     return (
-        <div class="row">
-          <div class="task col-xs-10">
+        <div className="row">
+          <div className="task col-xs-10">
             <textarea ref="newText" defaultValue={this.props.children}></textarea>
-            <button class="btn btn-default-outline" onClick={this.save}><span class="glyphicon glyphicon-floppy-save"></span></button>
+            <button className="btn btn-default-outline" onClick={this.save}><span className="glyphicon glyphicon-floppy-save"></span></button>
           </div>
         </div>
     )
