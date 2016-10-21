@@ -12,6 +12,7 @@ class TaskList extends React.Component{
     this.nextId = this.nextId.bind(this);
     this.newTask = this.newTask.bind(this);
     this.add = this.add.bind(this);
+    this.remove = this.remove.bind(this);
     this.update = this.update.bind(this);
     this.eachTask = this.eachTask.bind(this);
     this.startCount = this.startCount.bind(this);
@@ -24,19 +25,21 @@ class TaskList extends React.Component{
     return this.uniqueId++;
   }
   newTask() {
-    if (confirm("Are you sure you want to stop tracking this task and log it to today's task list?")) {
+    if (confirm("Are you sure you want to stop tracking this task and `log` it to today's task list?")) {
             var description = document.getElementById("task-input").value;
-            // var duration = this.timer.getTimeString();
-            this.add(description, '00:00:30');
+            var duration = this.timer.getTimeString();
+            this.add(description, duration);
+            this.timer.resetTimer();
+            this.setState({isCounting: false});
         }
   }
-  add(description, duration) {
+  add(desc, dur) {
     var tasks = [
       ...this.state.tasks,
       {
         id: this.nextId(),
-        description: description,
-        duration: duration
+        description: desc,
+        duration: dur
       }
     ];
     this.setState({tasks});
@@ -57,11 +60,17 @@ class TaskList extends React.Component{
     return (
       <Task key={task.id}
             id={task.id}
+            description={task.description}
+            duration={task.duration}
             onChange={this.update}
             onRemove={this.remove}>
             {task.task}
       </Task>
     )
+  }
+  remove(id) {
+    var tasks = this.state.tasks.filter(task => task.id !== id);
+    this.setState({tasks});
   }
   startCount() {
     this.timer.startTimer();

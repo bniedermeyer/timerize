@@ -4,11 +4,7 @@ import './App.css';
 var Task = React.createClass({
   getInitialState() {
     return ( {
-      editing: false,
-      /*taskDescription: '',
-      taskDuration: ''
-      //commenting out because these will probably be set by the container
-      */
+      editing: false
     })
   },
   componentDidUpdate() {
@@ -30,7 +26,7 @@ var Task = React.createClass({
   renderDisplay() {
     return (
       <div className="row">
-          <div className="task col-xs-10"></div>
+          <div className="task col-xs-10">{this.props.description} -- {this.props.duration}</div>
           <div className="col-xs-1 task-delete">
               <button className="btn btn-default-outline" onClick={this.delete}><span className="glyphicon glyphicon-trash"></span>
               </button>
@@ -45,7 +41,7 @@ var Task = React.createClass({
     return (
         <div className="row">
           <div className="task col-xs-10">
-            <textarea ref="newText" defaultValue={this.props.children}></textarea>
+            <textarea ref="newText" defaultValue="Description"></textarea>
             <button className="btn btn-default-outline" onClick={this.save}><span className="glyphicon glyphicon-floppy-save"></span></button>
           </div>
         </div>
