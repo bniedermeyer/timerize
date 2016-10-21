@@ -31,6 +31,8 @@ class TaskList extends React.Component{
             this.add(description, duration);
             this.timer.resetTimer();
             this.setState({isCounting: false});
+            document.getElementById("task-input").value = '';
+
         }
   }
   add(desc, dur) {
@@ -44,14 +46,14 @@ class TaskList extends React.Component{
     ];
     this.setState({tasks});
   }
-  update(newDescription, newDuration, id) {
+  update(newDescription, id) {
     var tasks = this.state.tasks.map(
       task => (task.id !== id) ?
       task :
       {
         ...task,
-        description: newDescription,
-        duration: newDuration
+        description: newDescription
+        // duration: newDuration
       }
     )
     this.setState({tasks});
@@ -83,6 +85,7 @@ class TaskList extends React.Component{
   resetCount() {
     if (confirm("Are you sure you want to reset the timer? You will lose your current task's time!")) {
       this.timer.resetTimer();
+      document.getElementById("task-input").value = '';
       this.setState({isCounting: false});
     }
 

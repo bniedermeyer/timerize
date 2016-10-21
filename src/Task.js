@@ -13,6 +13,10 @@ var Task = React.createClass({
           this.refs.newText.select()
       }
   },
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log(nextProps);
+    return nextProps.description !== 'Description';
+  },
   edit() {
     this.setState({editing: true})
   },
@@ -41,7 +45,8 @@ var Task = React.createClass({
     return (
         <div className="row">
           <div className="task col-xs-10">
-            <textarea ref="newText" defaultValue="Description"></textarea>
+            <textarea ref="newText" defaultValue="Description" rows="1"></textarea>
+            <textarea ref="newTime" defaultValue="Time" rows="1"></textarea>
             <button className="btn btn-default-outline" onClick={this.save}><span className="glyphicon glyphicon-floppy-save"></span></button>
           </div>
         </div>
