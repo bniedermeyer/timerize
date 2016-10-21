@@ -1,10 +1,10 @@
-.task, .task-delete, .task-edit, .task-delete textarea, .task-edit textarea {
+.task, .task-button, .task-button textarea {
   background-color: #FFF819; }
 
 .button-container {
   margin-top: 10px; }
 
-#description, #duration, .task-delete, .task-edit {
+#description, #duration, .task-button {
   line-height: 40px; }
 
 .task {
@@ -17,16 +17,15 @@
 #duration {
   float: right; }
 
-.task-delete, .task-edit {
+.task-button {
   height: 40px; }
-  .task-delete button, .task-edit button {
+  .task-button button {
     height: 30px; }
-  .task-delete textarea, .task-edit textarea {
+  .task-button textarea {
     height: auto; }
 
 .task,
-.task-delete,
-.task-edit {
+.task-button {
   margin-top: 10px;
   margin-bottom: 5px; }
 
@@ -40,16 +39,15 @@
 #duration {
   float: right; }
 
-.task-delete, .task-edit {
+.task-button {
   height: 40px; }
-  .task-delete button, .task-edit button {
+  .task-button button {
     height: 30px; }
-  .task-delete textarea, .task-edit textarea {
+  .task-button textarea {
     height: auto; }
 
 .task,
-.task-delete,
-.task-edit {
+.task-button {
   margin-top: 10px;
   margin-bottom: 5px; }
 

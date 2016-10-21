@@ -46,14 +46,14 @@ class TaskList extends React.Component{
     ];
     this.setState({tasks});
   }
-  update(newDescription, id) {
+  update(newDescription, newDuration, id) {
     var tasks = this.state.tasks.map(
       task => (task.id !== id) ?
       task :
       {
         ...task,
-        description: newDescription
-        // duration: newDuration
+        description: newDescription,
+        duration: newDuration
       }
     )
     this.setState({tasks});

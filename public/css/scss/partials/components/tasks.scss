@@ -16,7 +16,7 @@
 
 }
 
-.task-delete, .task-edit {
+.task-button { 
     @extend %background-yellow;
     @extend %task-line-height;
     height: 40px;
@@ -31,8 +31,7 @@
 
 
 .task,
-.task-delete,
-.task-edit {
+.task-button {
     margin-top: 10px;
     margin-bottom: 5px;
 }
