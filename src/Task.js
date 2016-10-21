@@ -10,20 +10,20 @@ var Task = React.createClass({
   shouldComponentUpdate(nextProps, nextState) {
     return this.props.description !== nextProps.description || this.props.duration !== nextProps.duration || this.state !== nextState;
   },
-  edit() {
+  edit() { //updates the state so changes can be made to the task
     this.setState({editing: true})
   },
-  cancelEdit() {
+  cancelEdit() { //cancels the editing of the task
     this.setState({editing: false});
   },
-  save() {
+  save() { //saves changes to the task
         this.props.onChange(this.refs.newDescription.value, this.refs.newTime.value, this.props.id)
         this.setState({editing: false})
   },
-  delete() {
+  delete() { //removes the task from the list, calling the parents delete function
     this.props.onRemove(this.props.id)
   },
-  renderDisplay() {
+  renderDisplay() { //renders the task when no editing is taking place
     return (
       <div className="row">
           <div className="task col-xs-10">{this.props.description} -- {this.props.duration}</div>
@@ -37,7 +37,7 @@ var Task = React.createClass({
       </div>
     )
   },
-  renderForm() {
+  renderForm() { //renders the task when it is being edited
     return (
         <div className="row">
           <div className="task col-xs-10">
@@ -53,7 +53,7 @@ var Task = React.createClass({
         </div>
     )
   },
-  render() {
+  render() { //React component render function.
     return ((this.state.editing) ? this.renderForm()
                                   : this.renderDisplay())
   }

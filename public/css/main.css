@@ -59,14 +59,14 @@ body {
   margin: 0 auto;
   float: none; }
 
-.timer-hide {
-  margin-top: 10px; }
-
 #time-container {
   text-align: center;
   color: #006eff; }
 
 #timer {
   font-size: 10em; }
+
+#task-input {
+  margin-bottom: 10px; }
 
 /*# sourceMappingURL=main.css.map */
