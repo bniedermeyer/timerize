@@ -31,7 +31,7 @@ export default class Timer {
 
   getTimeString() {
     var time =  Timer.convertToTimeStamp(seconds);
-    console.log(time);
+    return time;
   }
 
    static convertToTimeStamp(secs) {
