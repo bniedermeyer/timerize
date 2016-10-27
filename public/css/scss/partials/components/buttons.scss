@@ -1,3 +1,10 @@
 .button-container {
     @extend %top-margin;
 }
+.btn {
+  border: {
+    color: $gray;
+    width: 1px;
+  }
+  color: black;
+}

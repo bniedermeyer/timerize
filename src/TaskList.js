@@ -109,9 +109,9 @@ class TaskList extends React.Component{
         <button className="btn btn-success col-xs-4 toggle-timer"
         onClick={this.startCount}>Start</button>
         <button className="btn btn-danger col-xs-4"
-        onClick={this.resetCount}>Reset</button>
+        onClick={this.resetCount}>Reset Timer</button>
         <button className="btn btn-warning col-xs-4"
-        onClick={this.newTask}>New Task</button>
+        onClick={this.newTask}>Log Current Task</button>
       </div>
     )
   }
@@ -121,9 +121,9 @@ class TaskList extends React.Component{
         <button className="btn btn-primary col-xs-4 toggle-timer"
         onClick={this.stopCount}>Pause</button>
         <button className="btn btn-danger col-xs-4"
-        onClick={this.resetCount}>Reset</button>
+        onClick={this.resetCount}>Reset Timer</button>
         <button className="btn btn-warning col-xs-4"
-        onClick={this.newTask}>New Task</button>
+        onClick={this.newTask}>Log Current Task</button>
       </div>
     )
   }
