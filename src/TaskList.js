@@ -10,11 +10,18 @@ class TaskList extends React.Component{
     //load previous state if present
     var localState = JSON.parse(localStorage.getItem('TaskListState'));
     if (localState !== null) {
-      if (confirm("Would you like to load your previous tasks you had saved? (Choosing cancel will delete them and you won't be able to recover)")) {
-        this.state = localState;
-      } else {
-        localStorage.removeItem('TaskListState');
-      }
+      bootbox.confirm("Would you like to load your previous tasks you had saved? (Choosing cancel will delete them and you won't be able to recover)", function(result) {
+        if (result) {
+          this.state = localState;
+        } else {
+          localStorage.removeItem('TaskListState');
+        }
+      });
+      // if (confirm("Would you like to load your previous tasks you had saved? (Choosing cancel will delete them and you won't be able to recover)")) {
+      //   this.state = localState;
+      // } else {
+      //   localStorage.removeItem('TaskListState');
+      // }
     }
     //binding functions to the react component
     this.nextId = this.nextId.bind(this);
