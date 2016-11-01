@@ -28,10 +28,13 @@ class TaskList extends React.Component{
 
     //objects
     this.timer = new Timer();
+    //local state from browser
+    this.localState = JSON.parse(localStorage.getItem('TaskListState'));
   }
   componentDidMount() {
-    var localState = JSON.parse(localStorage.getItem('TaskListState'));
-    if (localState !== null) {
+    //if there exists any previous state, prompt to see if it should be loaded
+    // var localState = JSON.parse(localStorage.getItem('TaskListState'));
+    if (this.localState !== null) {
       this.setState({showLocalStateModal: true});
     }
   }
@@ -39,12 +42,12 @@ class TaskList extends React.Component{
     var state = this.state;
     localStorage.setItem('TaskListState', JSON.stringify(state));
   }
-  loadLocalState() {
-    var localState = JSON.parse(localStorage.getItem('TaskListState'));
-    console.log(localState);
-    this.setState(localState);
+  loadLocalState() { //loads the previous state of the task list from the browser's local storage
+    // var localState = JSON.parse(localStorage.getItem('TaskListState'));
+    // console.log(localState);
+    this.setState(this.localState);
   }
-  deleteLocalState() {
+  deleteLocalState() { //deletes the stored state from the browser's local storage
     localStorage.removeItem('TaskListState');
     this.setState({showLocalStateModal: false});
   }
@@ -52,13 +55,13 @@ class TaskList extends React.Component{
     this.uniqueId = this.uniqueId || 0;
     return this.uniqueId++;
   }
-  promptForTaskLog() {
+  promptForTaskLog() { //displays the modal to confirm the logging of a task
     this.setState({showTaskLogConfirmDialog: true});
   }
-  closeModals() {
+  closeModals() { ///closes any open modals by setting their distplay state to false
     this.setState({showLocalStateModal: false, showTaskLogConfirmDialog: false, showResetCountDialog: false});
   }
-  logTask() {
+  logTask() {//logs the current task to the task list and clears input for another
     var description = document.getElementById("task-input").value;
     var duration = this.timer.getTimeString();
     this.add(description, duration);
@@ -113,7 +116,7 @@ class TaskList extends React.Component{
     this.timer.stopTimer();
     this.setState({isCounting: false});
   }
-  promptForCountReset() {
+  promptForCountReset() { //displays the modal to reset the count
     this.setState({showResetCountDialog: true});
   }
   resetCount() { //resets the timer and clears the description box
@@ -183,7 +186,7 @@ class TaskList extends React.Component{
               </Modal.Footer>
             </Modal>
           </div>
-
+          
           {(this.state.isCounting) ? this.renderCounting() : this.renderNotCounting()}
             {this.state.tasks.map(this.eachTask)}
         </div>
