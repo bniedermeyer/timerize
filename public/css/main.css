@@ -76,4 +76,7 @@ body {
 #task-input {
   margin-bottom: 10px; }
 
+#trello, #timer {
+  text-align: center; }
+
 /*# sourceMappingURL=main.css.map */
