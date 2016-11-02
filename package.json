@@ -2,7 +2,7 @@
   "name": "time-tracker",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://bniedermeyer.github.io/time-tracker",
+  "homepage": "http://bniedermeyer.github.io/timerize",
   "devDependencies": {
     "react-scripts": "0.6.1"
   },
