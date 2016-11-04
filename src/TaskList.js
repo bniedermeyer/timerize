@@ -92,6 +92,13 @@ class TaskList extends React.Component{
     )
     this.setState({tasks}, this.persistState);
   }
+  loadTask(id) {
+    var task = this.state.tasks.filter(function(tsk) {
+      return tsk.id == id;
+    });
+    //TODO call timer function to set timer to current timer
+    document.getElementById("task-input").value = task.description;
+  }
   eachTask(task) {//creates task components in the list
     return (
       <Task key={task.id}
@@ -186,7 +193,7 @@ class TaskList extends React.Component{
               </Modal.Footer>
             </Modal>
           </div>
-          
+
           {(this.state.isCounting) ? this.renderCounting() : this.renderNotCounting()}
             {this.state.tasks.map(this.eachTask)}
         </div>
