@@ -96,7 +96,7 @@ class TaskList extends React.Component{
     var task = this.state.tasks.filter(function(tsk) {
       return tsk.id == id;
     });
-    //TODO call timer function to set timer to current timer
+    this.timer.setTime(task.duration);
     document.getElementById("task-input").value = task.description;
   }
   eachTask(task) {//creates task components in the list
