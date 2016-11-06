@@ -37,9 +37,8 @@ export default class Timer {
   setTime(duration) {
     this.stopTimer();
     var splitDuration = duration.split(':');
-    var newSeconds = (splitDuration[0] * 3600) + (splitDuration[1] * 60) + (splitDuration[2]);
+    var newSeconds = (splitDuration[0] * 3600) + (splitDuration[1] * 60) + (Number.parseInt(splitDuration[2], 10));
     seconds = newSeconds;
-
     var event = new CustomEvent("timer", {
       detail: {
         time: duration

@@ -21,18 +21,24 @@ var Task = React.createClass({
         this.setState({editing: false})
   },
   delete() { //removes the task from the list, calling the parents delete function
-    this.props.onRemove(this.props.id)
+    this.props.onRemove(this.props.id);
+  },
+  load() {
+    this.props.onLoad(this.props.id);
   },
   renderDisplay() { //renders the task when no editing is taking place
     return (
       <div className="row">
-          <div className="task col-xs-10">{this.props.description} -- {this.props.duration}</div>
+          <div className="task col-xs-9">{this.props.description} -- {this.props.duration}</div>
           <div className="col-xs-1 task-button">
               <button className="btn btn-default-outline" onClick={this.delete}><span className="glyphicon glyphicon-trash"></span>
               </button>
           </div>
           <div className="col-xs-1 task-button">
               <button className="btn btn-default-outline" onClick={this.edit}><span className="glyphicon glyphicon-pencil"></span></button>
+          </div>
+          <div className="col-xs-1 task-button">
+            <button className="btn btn-default-outline" onClick={this.load}><span className="glyphicon glyphicon-open"></span></button>
           </div>
       </div>
     )

@@ -7,7 +7,7 @@ import {Modal, Button} from 'react-bootstrap'
 class TaskList extends React.Component{
   constructor(props) {
     super(props);
-    this.state = {tasks: [], isCounting: false, showLocalStateModal: false, showTaskLogConfirmDialog: false, showResetCountDialog: false};
+    this.state = {tasks: [], isCounting: false, showLocalStateModal: false, showTaskLogConfirmDialog: false, showResetCountDialog: false, loadedTaskId: ''};
 
     //binding functions to the react component
     this.nextId = this.nextId.bind(this);
@@ -21,6 +21,7 @@ class TaskList extends React.Component{
     this.stopCount = this.stopCount.bind(this);
     this.resetCount = this.resetCount.bind(this);
     this.persistState = this.persistState.bind(this);
+    this.loadTask = this.loadTask.bind(this);
     this.loadLocalState = this.loadLocalState.bind(this);
     this.deleteLocalState = this.deleteLocalState.bind(this);
     this.promptForTaskLog = this.promptForTaskLog.bind(this);
@@ -70,15 +71,33 @@ class TaskList extends React.Component{
     document.getElementById("task-input").value = '';
   }
   add(desc, dur) {//adds a new task to the list
-    var tasks = [
-      ...this.state.tasks,
-      {
-        id: this.nextId(),
+    var tasks;
+    var loadedId = this.state.loadedTaskId;
+    if (this.state.loadedTaskId !== '') { //update the task that was loaded
+      tasks = this.state.tasks.filter(function(tsk) {
+        return tsk.id !== loadedId;
+      });
+      tasks.push({
+        id: this.state.loadedTaskId,
         description: desc,
         duration: dur
-      }
-    ];
-    this.setState({tasks}, this.persistState);
+      });
+    } else {//new task, add it to the list
+      tasks = [
+        ...this.state.tasks,
+        {
+          id: this.nextId(),
+          description: desc,
+          duration: dur
+        }
+      ];
+    }
+    //sort the tasks so that they appear in the same order they were displayed in
+    tasks = tasks.sort(function(a,b) {
+      return a.id - b.id;
+    });
+    //set the state of the tasks and clear the lodaded id. Save the current state to local storage
+    this.setState({tasks, loadedTaskId: ''}, this.persistState);
   }
   update(newDescription, newDuration, id) { //update a task that has been edited
     var tasks = this.state.tasks.map(
@@ -93,11 +112,12 @@ class TaskList extends React.Component{
     this.setState({tasks}, this.persistState);
   }
   loadTask(id) {
-    var task = this.state.tasks.filter(function(tsk) {
-      return tsk.id == id;
+    var task = this.state.tasks.find(function(tsk) {
+      return tsk.id === id;
     });
     this.timer.setTime(task.duration);
     document.getElementById("task-input").value = task.description;
+    this.setState({loadedTaskId: id});
   }
   eachTask(task) {//creates task components in the list
     return (
@@ -106,7 +126,8 @@ class TaskList extends React.Component{
             description={task.description}
             duration={task.duration}
             onChange={this.update}
-            onRemove={this.remove}>
+            onRemove={this.remove}
+            onLoad={this.loadTask}>
             {task.task}
       </Task>
     )
@@ -129,7 +150,7 @@ class TaskList extends React.Component{
   resetCount() { //resets the timer and clears the description box
     this.timer.resetTimer();
     document.getElementById("task-input").value = '';
-    this.setState({isCounting: false, showResetCountDialog: false});
+    this.setState({isCounting: false, showResetCountDialog: false, loadedTaskId: ''});
   }
   renderNotCounting() { //the way the buttons should display if the timer is not currently running
     return (
