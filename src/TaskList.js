@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import Task from './Task';
 import Timer from './Timer';
 import {Modal, Button} from 'react-bootstrap'
