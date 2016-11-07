@@ -1,7 +1,7 @@
 import React from 'react';
 import Task from './Task';
 import Timer from './Timer';
-import {Modal, Button} from 'react-bootstrap'
+import {Modal, ButtonGroup, Button, Row} from 'react-bootstrap'
 
 class TaskList extends React.Component{
   constructor(props) {
@@ -52,7 +52,7 @@ class TaskList extends React.Component{
     this.setState({showLocalStateModal: false});
   }
   nextId() { //generate a new id for a new task
-    this.uniqueId = this.uniqueId || 0;
+    this.uniqueId = this.uniqueId || this.state.tasks.length;
     return this.uniqueId++;
   }
   promptForTaskLog() { //displays the modal to confirm the logging of a task
@@ -153,26 +153,30 @@ class TaskList extends React.Component{
   }
   renderNotCounting() { //the way the buttons should display if the timer is not currently running
     return (
-      <div className="row">
-        <button className="btn btn-success col-xs-4 toggle-timer"
-        onClick={this.startCount}>Start</button>
-        <button className="btn btn-danger col-xs-4"
-        onClick={this.promptForCountReset}>Reset Timer</button>
-        <button className="btn btn-warning col-xs-4"
-        onClick={this.promptForTaskLog}>Log Current Task</button>
-      </div>
+      <Row>
+      <ButtonGroup className="col-xs-12">
+          <Button className="col-xs-4" bsStyle="success"
+           onClick={this.startCount}>Start</Button>
+          <Button className="col-xs-4" bsStyle="danger"
+           onClick={this.promptForCountReset}>Reset Timer</Button>
+          <Button className="col-xs-4" bsStyle="warning"
+           onClick={this.promptForTaskLog}>Log Current Task</Button>
+        </ButtonGroup>
+      </Row>
     )
   }
   renderCounting() { //the way the buttons should display if the timer is currently counting
     return (
-      <div className="row">
-        <button className="btn btn-primary col-xs-4 toggle-timer"
-        onClick={this.stopCount}>Pause</button>
-        <button className="btn btn-danger col-xs-4"
-        onClick={this.promptForCountReset}>Reset Timer</button>
-        <button className="btn btn-warning col-xs-4"
-        onClick={this.promptForTaskLog}>Log Current Task</button>
-      </div>
+      <Row>
+        <ButtonGroup className="col-xs-12">
+        <Button className="col-xs-4" bsStyle="primary"
+         onClick={this.stopCount}>Pause</Button>
+        <Button className="col-xs-4" bsStyle="danger"
+         onClick={this.promptForCountReset}>Reset Timer</Button>
+        <Button className="col-xs-4" bsStyle="warning"
+         onClick={this.promptForTaskLog}>Log Current Task</Button>
+        </ButtonGroup>
+      </Row>
     )
   }
   render() {//React render function. Renders the list and buttons

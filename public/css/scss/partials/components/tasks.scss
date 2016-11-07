@@ -1,37 +1,18 @@
+@media screen and (max-width: 768px) {
+  .task {
+    font-size: 5px;
+  }
+}
 .task {
     @extend %background-yellow;
     height: 40px;
     font-size: 25px;
-
-}
-
-#description {
-    @extend %task-line-height;
-    float: left;
-}
-
-#duration {
-    @extend %task-line-height;
-    float: right;
-
-}
-
-.task-button { 
-    @extend %background-yellow;
-    @extend %task-line-height;
-    height: 40px;
-    button {
-        height: 30px;
+    margin: {
+      top: 10px;
+      bottom: 5px
     }
-    textarea {
-      @extend %background-yellow;
-      height: auto;
+    .buttons {
+      float:right;
     }
-}
 
-
-.task,
-.task-button {
-    margin-top: 10px;
-    margin-bottom: 5px;
 }
