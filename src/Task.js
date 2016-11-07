@@ -1,5 +1,5 @@
 import React from 'react';
-import {Row, Col, ButtonGroup, Button, Glyphicon, FormControl} from 'react-bootstrap';
+import {Row, Col, ButtonGroup, Button, Glyphicon} from 'react-bootstrap';
 
 var Task = React.createClass({
   getInitialState() {
