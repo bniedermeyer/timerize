@@ -6,33 +6,34 @@
 
 @media screen and (max-width: 768px) {
   .task {
-    font-size: 5px; } }
+    font-size: 15px !important; } }
 .task {
   height: 40px;
   font-size: 25px;
+  line-height: 40px;
   margin-top: 10px;
   margin-bottom: 5px; }
-  .task .buttons {
-    float: right; }
+  .task .options, .task .buttons {
+    position: relative;
+    top: 2.5px; }
 
 .btn {
   border-color: #949494;
   border-width: 1px;
   color: black; }
 
-.taskButtons {
-  align: right; }
-
 @media screen and (max-width: 768px) {
   .task {
-    font-size: 5px; } }
+    font-size: 15px !important; } }
 .task {
   height: 40px;
   font-size: 25px;
+  line-height: 40px;
   margin-top: 10px;
   margin-bottom: 5px; }
-  .task .buttons {
-    float: right; }
+  .task .options, .task .buttons {
+    position: relative;
+    top: 2.5px; }
 
 @media screen and (max-width: 768px) {
   #timer {
