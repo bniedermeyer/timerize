@@ -1,60 +1,39 @@
-.task, .task-button, .task-button textarea {
+.task {
   background-color: #FFF819; }
 
 .button-container {
   margin-top: 10px; }
 
-#description, #duration, .task-button {
-  line-height: 40px; }
-
+@media screen and (max-width: 768px) {
+  .task {
+    font-size: 15px !important; } }
 .task {
   height: 40px;
-  font-size: 25px; }
-
-#description {
-  float: left; }
-
-#duration {
-  float: right; }
-
-.task-button {
-  height: 40px; }
-  .task-button button {
-    height: 30px; }
-  .task-button textarea {
-    height: auto; }
-
-.task,
-.task-button {
+  font-size: 25px;
+  line-height: 40px;
   margin-top: 10px;
   margin-bottom: 5px; }
+  .task .options, .task .buttons {
+    position: relative;
+    top: 2.5px; }
 
 .btn {
   border-color: #949494;
   border-width: 1px;
   color: black; }
 
+@media screen and (max-width: 768px) {
+  .task {
+    font-size: 15px !important; } }
 .task {
   height: 40px;
-  font-size: 25px; }
-
-#description {
-  float: left; }
-
-#duration {
-  float: right; }
-
-.task-button {
-  height: 40px; }
-  .task-button button {
-    height: 30px; }
-  .task-button textarea {
-    height: auto; }
-
-.task,
-.task-button {
+  font-size: 25px;
+  line-height: 40px;
   margin-top: 10px;
   margin-bottom: 5px; }
+  .task .options, .task .buttons {
+    position: relative;
+    top: 2.5px; }
 
 @media screen and (max-width: 768px) {
   #timer {
