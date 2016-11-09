@@ -6,7 +6,7 @@ import {Modal, ButtonGroup, Button, Row} from 'react-bootstrap'
 class TaskList extends React.Component{
   constructor(props) {
     super(props);
-    this.state = {tasks: [], isCounting: false, showLocalStateModal: false, showTaskLogConfirmDialog: false, showResetCountDialog: false, loadedTaskId: ''};
+    this.state = {tasks: [], isCounting: false, showLocalStateModal: false, showTaskLogConfirmDialog: false, showResetCountDialog: false, showConfirmationDialong: false, confirmationDialogMessage: '', loadedTaskId: ''};
 
     //binding functions to the react component
     this.nextId = this.nextId.bind(this);
@@ -43,8 +43,6 @@ class TaskList extends React.Component{
     localStorage.setItem('TaskListState', JSON.stringify(state));
   }
   loadLocalState() { //loads the previous state of the task list from the browser's local storage
-    // var localState = JSON.parse(localStorage.getItem('TaskListState'));
-    // console.log(localState);
     this.setState(this.localState);
   }
   deleteLocalState() { //deletes the stored state from the browser's local storage
@@ -116,7 +114,7 @@ class TaskList extends React.Component{
     });
     this.timer.setTime(task.duration);
     document.getElementById("task-input").value = task.description;
-    this.setState({loadedTaskId: id});
+    this.setState({isCounting: false, loadedTaskId: id});
   }
   eachTask(task) {//creates task components in the list
     return (
@@ -155,7 +153,7 @@ class TaskList extends React.Component{
     return (
       <Row>
       <ButtonGroup className="col-xs-12">
-          <Button className="col-xs-4" bsStyle="success"
+          <Button className="col-xs-4 toggle-timer" bsStyle="success"
            onClick={this.startCount}>Start</Button>
           <Button className="col-xs-4" bsStyle="danger"
            onClick={this.promptForCountReset}>Reset Timer</Button>
@@ -169,7 +167,7 @@ class TaskList extends React.Component{
     return (
       <Row>
         <ButtonGroup className="col-xs-12">
-        <Button className="col-xs-4" bsStyle="primary"
+        <Button className="col-xs-4 toggle-timer" bsStyle="primary"
          onClick={this.stopCount}>Pause</Button>
         <Button className="col-xs-4" bsStyle="danger"
          onClick={this.promptForCountReset}>Reset Timer</Button>
