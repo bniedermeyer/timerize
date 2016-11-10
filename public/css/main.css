@@ -20,7 +20,8 @@
 .btn {
   border-color: #949494;
   border-width: 1px;
-  color: black; }
+  color: black;
+  word-wrap: break-word; }
 
 @media screen and (max-width: 768px) {
   .task {
