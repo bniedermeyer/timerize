@@ -18,7 +18,7 @@ class ClassificationDialog extends React.Component {
   }
   render() { //render the component
     return (
-      <Modal show={this.props.show}>
+      <Modal show={this.props.show} autoFocus={true}>
         {(this.props.displayHeader)
         ? <Modal.Header><h4>Are you sure?</h4></Modal.Header>
         : null}
