@@ -40,7 +40,7 @@ var Task = React.createClass({
                 <Glyphicon glyph="pencil" /> Edit
               </MenuItem>
               <MenuItem onClick={this.load}>
-                <Glyphicon glyph="open" /> Load Task
+                <Glyphicon glyph="open" /> Resume Task
               </MenuItem>
             </Dropdown.Menu>
           </Dropdown>
