@@ -1,10 +1,11 @@
 import React from 'react';
-import {Row, Col, Button, Glyphicon, Dropdown, MenuItem, Form, FormGroup, FormControl, Modal, ControlLabel} from 'react-bootstrap';
+import {Row, Col, Button, Glyphicon, Dropdown, MenuItem, Form, FormGroup, FormControl, Modal, ControlLabel, HelpBlock} from 'react-bootstrap';
 
 var Task = React.createClass({
   getInitialState() {
     return ( {
-      editing: false
+      editing: false,
+      validDurationFormat: null
     })
   },
   shouldComponentUpdate(nextProps, nextState) {
@@ -27,6 +28,14 @@ var Task = React.createClass({
   },
   load() {
     this.props.onLoad(this.props.id);
+  },
+  handleChange(e) {
+    let newVal = e.target.value;
+    if (!newVal.match(/(\d{2}:?){3}/)) {
+      this.setState({validDurationFormat: 'error'});
+    } else {
+      this.setState({validDurationFormat: null});
+    }
   },
   renderDisplay() { //renders the task when no editing is taking place
     return (
@@ -63,17 +72,27 @@ var Task = React.createClass({
                 <FormControl type="text" placeholder={this.props.description} />
               </Col>
             </FormGroup>
-            <FormGroup controlId="formTaskDuration">
+            <FormGroup controlId="formTaskDuration" validationState={this.state.validDurationFormat}>
               <Col componentClass={ControlLabel} xs={3}>Task Duration</Col>
               <Col xs={7}>
-                <FormControl type="text" placeholder={this.props.duration} />
+                <FormControl type="text"
+                  placeholder={this.props.duration}
+                  onChange={this.handleChange} />
+                <FormControl.Feedback />
+                { /*if the new duration doesn't fit the expected format provide a help bubble*/
+                  (this.state.validDurationFormat === 'error') ?
+                  <HelpBlock>Expected Format is HH:MM:SS</HelpBlock>
+                : <HelpBlock />}
               </Col>
             </FormGroup>
           </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={this.cancelEdit}>Cancel</Button>
-          <Button onClick={this.save} bsStyle="success">OK</Button>
+          {/*enable or disable the ok button based on the format of duration*/
+            (this.state.validDurationFormat === null) ?
+            <Button onClick={this.save} bsStyle="success">OK</Button>
+          : <Button onClick={this.save} bsStyle="success" disabled>OK</Button>}
         </Modal.Footer>
       </Modal>
 
@@ -81,7 +100,7 @@ var Task = React.createClass({
           <Col className="task" xs={10} xsOffset={1}>{this.props.description} -- {this.props.duration}
             <Dropdown id="task-options" className="options pull-right" disabled>
               <Dropdown.Toggle>Options</Dropdown.Toggle>
-              <Dropdown.Menu />
+              <Dropdown.Menu /> {/* only including the meneu here because the options will never be visible*/}
             </Dropdown>
           </Col>
       </Row>
