@@ -150,7 +150,7 @@ class TaskList extends React.Component {
     }
     validateDescription() {
         if (document.getElementById("task-input").value === '') {
-            this.openConfirmationDialog("Please enter a task description before loggin the task", false, false, this.closeConfirmatiionDialog);
+            this.openConfirmationDialog("Please enter a task description before logging the task", false, false, this.closeConfirmatiionDialog);
             return false;
         } else  {
             return true;
