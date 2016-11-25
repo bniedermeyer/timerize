@@ -17,7 +17,7 @@ import {
 class Task extends React.Component{
   constructor(props) {
     super(props);
-    this.state = {editing: false, validDurationFormat: null};
+    this.state = {editing: false, durationFormatValidationState: null};
     //bind functions
     this.shouldComponentUpdate = this.shouldComponentUpdate.bind(this);
     this.edit = this.edit.bind(this);
@@ -60,10 +60,12 @@ class Task extends React.Component{
 
   handleChange(e) {
     let newVal = e.target.value;
-    if (!newVal.match(/(\d{2}:?){3}/)) {
-      this.setState({validDurationFormat: 'error'});
+     if (newVal === '') {
+      this.setState({durationFormatValidationState: null});
+    } else if (!newVal.match(/(\d{2}:?){3}/)) {
+      this.setState({durationFormatValidationState: 'error'});
     } else {
-      this.setState({validDurationFormat: null});
+      this.setState({durationFormatValidationState: null});
     }
   }
 
@@ -103,7 +105,7 @@ class Task extends React.Component{
                 <FormControl type="text" placeholder={this.props.description} />
               </Col>
             </FormGroup>
-            <FormGroup controlId="formTaskDuration" validationState={this.state.validDurationFormat}>
+            <FormGroup controlId="formTaskDuration" validationState={this.state.durationFormatValidationState}>
               <Col componentClass={ControlLabel} xs={3}>Task Duration</Col>
               <Col xs={7}>
                 <FormControl type="text"
@@ -111,7 +113,7 @@ class Task extends React.Component{
                   onChange={this.handleChange} />
                 <FormControl.Feedback />
                 { /*if the new duration doesn't fit the expected format provide a help bubble*/
-                  (this.state.validDurationFormat === 'error') ?
+                  (this.state.durationFormatValidationState === 'error') ?
                   <HelpBlock>Expected Format is HH:MM:SS</HelpBlock>
                 : <HelpBlock />}
               </Col>
@@ -121,7 +123,7 @@ class Task extends React.Component{
         <Modal.Footer>
           <Button onClick={this.cancelEdit}>Cancel</Button>
           {/*enable or disable the ok button based on the format of duration*/
-            (this.state.validDurationFormat === null) ?
+            (this.state.durationFormatValidationState === null) ?
             <Button onClick={this.save} bsStyle="success">OK</Button>
           : <Button onClick={this.save} bsStyle="success" disabled>OK</Button>}
         </Modal.Footer>
