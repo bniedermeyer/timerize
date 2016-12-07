@@ -76,17 +76,15 @@ class Task extends React.Component{
           <Dropdown id="task-options" className="options pull-right">
             <Dropdown.Toggle>Options</Dropdown.Toggle>
             <Dropdown.Menu>
-              <MenuItem onClick={this.delete}>
-                <Glyphicon glyph="trash" /> Delete
-              </MenuItem>
               <MenuItem onClick={this.edit}>
                 <Glyphicon glyph="pencil" /> Edit
               </MenuItem>
-              <MenuItem onClick={this.load}>
-                <Glyphicon glyph="open" /> Resume Task
+              <MenuItem onClick={this.delete}>
+                <Glyphicon glyph="trash" /> Delete
               </MenuItem>
             </Dropdown.Menu>
           </Dropdown>
+            <Button onClick={this.load} className="options pull-right"><Glyphicon glyph="open" /> Resume Task</Button>
         </Col>
       </Row>
     )
