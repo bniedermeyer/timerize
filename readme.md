@@ -1,9 +1,10 @@
- # Timerize
- #### A simple tool for tracking how much time you spend on things during the day
+# Timerize
+ 
+#### A simple tool for tracking how much time you spend on things during the day
 
  Timerize is a simple timer that lets you track the amount of time spent on individual tasks as you work throughout the day. Simply type in a description for your task and press start. When you are finished logging time for this task click 'Log Current Task' and the task is added to a list below. If you need to start working on that task later in the future click the resume button and your task is ready for you to add more time to it.
 
- ## Contributing
+## Contributing
 
  Timerize is built with the following technologies:
  - React.js
