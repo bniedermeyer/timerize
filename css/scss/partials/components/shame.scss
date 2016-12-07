@@ -1,0 +1,31 @@
+@media screen and (max-width: 768px) {
+    #timer{
+        font-size: 5em !important;
+    }
+}
+
+body {
+    padding-bottom: 20px;
+}
+.col-centered {
+    margin: 0 auto;
+    float: none;
+}
+#time-container {
+    text-align: center;
+    color: rgb(0, 110, 255);
+}
+#timer {
+    font: {
+        size: 10em;
+    }
+}
+#task-input {
+    margin: {
+        bottom: 10px;
+    }
+}
+
+#trello, #timer {
+  text-align: center;
+}

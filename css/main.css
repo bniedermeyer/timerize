@@ -1,0 +1,62 @@
+.task {
+  background-color: #FFF819; }
+
+.button-container {
+  margin-top: 10px; }
+
+@media screen and (max-width: 768px) {
+  .task {
+    font-size: 15px !important; } }
+.task {
+  height: 40px;
+  font-size: 25px;
+  line-height: 40px;
+  margin-top: 10px;
+  margin-bottom: 5px; }
+  .task .options, .task .buttons {
+    position: relative;
+    top: 2.5px; }
+
+.btn {
+  border-color: #949494;
+  border-width: 1px;
+  color: black;
+  word-wrap: break-word; }
+
+@media screen and (max-width: 768px) {
+  .task {
+    font-size: 15px !important; } }
+.task {
+  height: 40px;
+  font-size: 25px;
+  line-height: 40px;
+  margin-top: 10px;
+  margin-bottom: 5px; }
+  .task .options, .task .buttons {
+    position: relative;
+    top: 2.5px; }
+
+@media screen and (max-width: 768px) {
+  #timer {
+    font-size: 5em !important; } }
+body {
+  padding-bottom: 20px; }
+
+.col-centered {
+  margin: 0 auto;
+  float: none; }
+
+#time-container {
+  text-align: center;
+  color: #006eff; }
+
+#timer {
+  font-size: 10em; }
+
+#task-input {
+  margin-bottom: 10px; }
+
+#trello, #timer {
+  text-align: center; }
+
+/*# sourceMappingURL=main.css.map */

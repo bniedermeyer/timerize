@@ -1,0 +1,20 @@
+@media screen and (max-width: 768px) {
+  .task {
+    font-size: 15px !important;
+  }
+}
+.task {
+    @extend %background-yellow;
+    height: 40px;
+    font-size: 25px;
+    line-height: 40px;
+    margin: {
+      top: 10px;
+      bottom: 5px
+    }
+    .options, .buttons {
+      position: relative;
+      top: 2.5px;
+    }
+
+}
